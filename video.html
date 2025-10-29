@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MyTube – Watch</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  body { overflow-x: hidden; }
+
+  .navbar {
+    height: 56px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    z-index: 1030;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+    left: 0;
+    width: 240px;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+    z-index: 1029;
+  }
+  .sidebar a {
+    display: block;
+    padding: 10px 20px;
+    color: #000;
+    text-decoration: none;
+  }
+  .sidebar a:hover {
+    background: #f0f0f0;
+  }
+
+  /* Content area */
+  .content {
+    margin-top: 56px;
+    margin-left: 240px;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+  }
+
+  /* Collapsed sidebar */
+  .sidebar.collapsed {
+    transform: translateX(-240px);
+  }
+  .content.expanded {
+    margin-left: 0;
+  }
+
+  /* Recommended video cards */
+  .video-card img {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+  }
+  .video-card img {
+  width: 168px;
+  height: 94px;
+  object-fit: cover;
+}
+.video-card h6 {
+  font-size: 14px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+
+  @media (max-width: 991px) {
+    .sidebar { transform: translateX(-240px); }
+    .content { margin-left: 0; }
+  }
+ /* Collapsed state: show only a few lines */
+#descriptionContainer {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  position: relative;
+}
+
+/* Collapsed: 3 lines */
+#descriptionContainer.collapsed-description {
+  max-height: 60px;
+}
+
+/* Optional fade effect at bottom */
+#descriptionContainer.collapsed-description::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(to bottom, transparent, white);
+  pointer-events: none;
+}
+
+/* Expanded: enough to show full content */
+#descriptionContainer.expanded-description {
+  max-height: 500px; /* pick a large enough number */
+}
+
+#commentsSection h5 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.comment {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.comment img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comment-body {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.comment-author {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.comment-text {
+  font-size: 14px;
+  margin: 2px 0;
+}
+
+.comment-time {
+  font-size: 12px;
+  color: #606060;
+}
+.video-card img {
+  object-fit: cover;
+  height: 180px;
+}
+/* Base Dark Mode */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+/* Navbar */
+body.dark-mode .navbar,
+body.dark-mode nav {
+  background-color: #1f1f1f !important;
+  color: #e0e0e0;
+}
+
+body.dark-mode .navbar a,
+body.dark-mode nav a {
+  color: #e0e0e0 !important;
+}
+
+/* Sidebar */
+body.dark-mode #sidebar {
+  background-color: #1e1e1e !important;
+  color: #e0e0e0;
+}
+
+body.dark-mode #sidebar a {
+  color: #e0e0e0 !important;
+}
+
+/* Cards */
+body.dark-mode .card {
+  background-color: #1e1e1e;
+  border-color: #333;
+}
+
+/* Video titles and texts */
+body.dark-mode .card-title,
+body.dark-mode .card-text,
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: #e0e0e0;
+}
+
+/* Buttons */
+body.dark-mode .btn {
+  background-color: #333;
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+/* Toggle Button itself */
+#themeToggle {
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+/* Smooth transitions */
+body, .card, .navbar, #sidebar {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container-fluid">
+    <button id="toggleSidebar" class="btn btn-link text-dark me-2" type="button">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <div style="width:30px;height:20px;background:#ff0000;display:inline-flex;align-items:center;justify-content:center;margin-right:6px;">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="white">
+          <path d="M10 8.5v7l6-3.5-6-3.5z"></path>
+        </svg>
+      </div>
+      MyTube
+    </a>
+
+    <form class="d-none d-lg-flex mx-auto w-50">
+      <input class="form-control rounded-start-pill" type="search" placeholder="Search">
+      <button class="btn btn-outline-secondary rounded-end-pill" type="submit">🔍</button>
+    </form>
+
+    <div class="d-flex align-items-center">
+      <button id="themeToggle" class="btn btn-sm btn-secondary">🌙</button>
+      <button class="btn btn-link text-dark me-2">🔔</button>
+      <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center" style="width:32px;height:32px;font-size:14px;font-weight:bold;">JD</div>
+    </div>
+  </div>
+</nav>
+
+<!-- Sidebar -->
+<div id="sidebar" class="sidebar">
+  <a href="./index.html">🏠 Home</a>
+  <a href="#">🎬 Shorts</a>
+  <hr>
+  <a href="./history.html">🕘 History</a>
+  <a href="./playlist.html">📜 Playlists</a>
+  <a href="./watchlater.html">⏱ Watch Later</a>
+  <a href="#">👍 Liked Videos</a>
+</div>
+
+<!-- Main content -->
+<div id="content" class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Left: Video Player -->
+      <div class="col-lg-8 mb-3">
+        <div class="ratio ratio-16x9 mb-3">
+          <iframe id="videoPlayer" src="" title="Video player" allowfullscreen></iframe>
+        </div>
+        <h4 id="videoTitle">Loading...</h4>
+        <p class="text-muted" id="videoViews"></p>
+
+        <!-- Collapsible description -->
+        <div id="descriptionContainer" class="collapsed-description">
+        <p id="videoDescription"></p>
+        </div>
+        <button id="toggleDescriptionBtn" class="btn btn-link p-0">Show more</button>
+        <hr>
+        <!-- COMMENTS SECTION -->
+        <div id="commentsSection" class="mt-3">
+        <h5 class="mb-3">Comments</h5>
+
+        <!-- Add Comment Form -->
+        <div class="d-flex mb-3">
+            <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="User">
+            <textarea id="commentInput" class="form-control" rows="1" placeholder="Add a public comment..."></textarea>
+        </div>
+        <button id="postCommentBtn" class="btn btn-primary btn-sm mb-3">Comment</button>
+
+        <!-- Comments List -->
+        <div id="commentsList"></div>
+        </div>
+      </div>
+       <div class="col-md-4">
+      <h5>Recommended Videos</h5>
+      <div id="recommendedVideos"></div>
+      <button id="viewMoreBtn" class="btn btn-primary btn-sm mt-2">View More</button>
+     </div>
+     </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./video.js"></script>
+<script src="./theme.js"></script>
+<!-- <script src="./watchLater.js"></script>
+<script src="./indexhtml.js"></script> -->
+
+
+</body>
+</html>

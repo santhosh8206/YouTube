@@ -1,0 +1,26 @@
+
+{
+  "shorts": [
+    {"id":"s1","title":"Funny Cat Compilation 🐱","views":"1.2M","thumbnail":"https://picsum.photos/420/740?random=1","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"},
+    {"id":"s2","title":"Epic Fails 😂","views":"987K","thumbnail":"https://picsum.photos/420/740?random=2","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"},
+    {"id":"s3","title":"Street Food Hacks 🍔","views":"845K","thumbnail":"https://picsum.photos/420/740?random=3","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"},
+    {"id":"s4","title":"Top Gadgets 🔥","views":"765K","thumbnail":"https://picsum.photos/420/740?random=4","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"},
+    {"id":"s5","title":"Dance Challenge 💃","views":"652K","thumbnail":"https://picsum.photos/420/740?random=5","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"},
+    {"id":"s6","title":"Quick Fitness 🏋️","views":"598K","thumbnail":"https://picsum.photos/420/740?random=6","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"},
+    {"id":"s7","title":"Travel Japan ✈️","views":"522K","thumbnail":"https://picsum.photos/420/740?random=7","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"},
+    {"id":"s8","title":"Football Skills ⚽","views":"499K","thumbnail":"https://picsum.photos/420/740?random=8","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"},
+    {"id":"s9","title":"Anime Moments 🎥","views":"472K","thumbnail":"https://picsum.photos/420/740?random=9","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"},
+    {"id":"s10","title":"Guitar Solo 🎸","views":"456K","thumbnail":"https://picsum.photos/420/740?random=10","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"},
+    {"id":"s11","title":"Funny Dogs 🐶","views":"432K","thumbnail":"https://picsum.photos/420/740?random=11","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"},
+    {"id":"s12","title":"Basketball Dunks 🏀","views":"420K","thumbnail":"https://picsum.photos/420/740?random=12","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"},
+    {"id":"s13","title":"Tech Tips 💻","views":"389K","thumbnail":"https://picsum.photos/420/740?random=13","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"},
+    {"id":"s14","title":"Cooking Pasta 🍝","views":"365K","thumbnail":"https://picsum.photos/420/740?random=14","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"},
+    {"id":"s15","title":"Magic Tricks ✨","views":"340K","thumbnail":"https://picsum.photos/420/740?random=15","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"},
+    {"id":"s16","title":"Fast Cars 🚗","views":"322K","thumbnail":"https://picsum.photos/420/740?random=16","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"},
+    {"id":"s17","title":"Nature Scenes 🌿","views":"301K","thumbnail":"https://picsum.photos/420/740?random=17","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"},
+    {"id":"s18","title":"Motivational 🎤","views":"298K","thumbnail":"https://picsum.photos/420/740?random=18","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"},
+    {"id":"s19","title":"Top Memes 🤣","views":"287K","thumbnail":"https://picsum.photos/420/740?random=19","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"},
+    {"id":"s20","title":"DIY Crafts ✂️","views":"265K","thumbnail":"https://picsum.photos/420/740?random=20","video":"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"}
+  ]
+}
+
