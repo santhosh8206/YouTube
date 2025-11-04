@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MyTube - Home</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <title>MyTube - Playlists</title>
   <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
-  <!-- ================= HEADER ================= -->
   <header class="header d-flex align-items-center justify-content-between">
     <div class="d-flex align-items-center gap-2">
       <button id="toggleSidebar" class="icon-btn">☰</button>
-      <h3 class="logo mb-0">MyTube</h3>
+      <a class="nav-link" href="./index.html"><h3 class="logo mb-0">MyTube</h3></a>
     </div>
 
     <div class="d-flex align-items-center gap-2">
@@ -27,26 +26,23 @@
     </div>
   </header>
 
-  <!-- ================= SIDEBAR ================= -->
- <aside id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar">
     <nav>
       <a href="index.html"><i class="bi bi-house"></i> Home</a>
-      <a href="history.html"><i class="bi bi-clock-history"></i> History</a>
-      <a href="watchlater.html" class="active"><i class="bi bi-clock"></i> Watch Later</a>
+      <a href="history.html" class="active"><i class="bi bi-clock-history"></i> History</a>
+      <a href="watchlater.html"><i class="bi bi-clock"></i> Watch Later</a>
       <a href="playlists.html"><i class="bi bi-music-note-list"></i> Playlists</a>
       <a href="notifications.html"><i class="bi bi-bell"></i> Notifications</a>
     </nav>
   </aside>
 
-  <!-- ================= MAIN CONTENT ================= -->
   <main id="mainContent">
-    <div class="container-fluid">
-      <h5 class="mb-3 fw-bold">Recommended Videos</h5>
-      <div id="videoContainer" class="row g-3"></div>
-    </div>
+    <h2>Your Playlists</h2>
+    <p class="text-muted">Create, view, and manage your playlists</p>
+
+    <div id="playlistsContainer" class="video-grid"></div>
   </main>
 
   <script src="./indexhtml.js"></script>
-  
 </body>
 </html>
