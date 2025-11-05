@@ -1,5 +1,5 @@
 /* ===========================================================
-   GLOBAL STYLES
+ 🌐 GLOBAL STYLES
 =========================================================== */
 * {
   box-sizing: border-box;
@@ -25,7 +25,7 @@ body {
 }
 
 /* ===========================================================
-   HEADER
+ 🧭 HEADER
 =========================================================== */
 .header {
   background-color: #fff;
@@ -46,10 +46,14 @@ body {
   font-size: 22px;
 }
 
+#toggleSidebar,
 .menu-icon {
   font-size: 22px;
+  background: none;
+  border: none;
+  color: inherit;
   cursor: pointer;
-  user-select: none;
+  padding: 8px;
   margin-right: 8px;
 }
 
@@ -87,43 +91,61 @@ body {
 }
 
 /* ===========================================================
-   SIDEBAR
+ 📂 SIDEBAR
 =========================================================== */
 .sidebar {
   position: fixed;
   top: 56px;
   left: 0;
-  width: 220px;
+  width: 240px;
   height: calc(100vh - 56px);
-  background: #fff;
+  background: #f8f9fa;
   border-right: 1px solid #ddd;
   padding-top: 10px;
-  transition: left 0.3s ease;
+  transition: transform 0.3s ease;
   overflow-y: auto;
+  z-index: 1000;
 }
 
+/* Sidebar links */
 .sidebar a {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 20px;
+  padding: 12px 20px;
   text-decoration: none;
-  color: #0f0f0f;
+  color: #333;
   font-size: 15px;
-  transition: background 0.2s;
+  transition: background 0.2s ease;
 }
 
 .sidebar a:hover {
-  background-color: #f1f1f1;
+  background-color: #e9ecef;
+}
+
+/* Collapsed (desktop) */
+.sidebar.collapsed {
+  transform: translateX(-100%);
+}
+
+/* Active (mobile) */
+.sidebar.active {
+  transform: translateX(0);
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.3);
 }
 
 /* ===========================================================
-   MAIN CONTENT (HOME PAGE)
+ 🏠 MAIN CONTENT
 =========================================================== */
 #mainContent {
-  margin-left: 220px;
+  margin-top: 56px;
+  margin-left: 240px;
   padding: 16px;
-  transition: margin-left 0.3s;
+  transition: margin-left 0.3s ease;
+}
+
+#mainContent.expanded {
+  margin-left: 0;
 }
 
 .video-grid {
@@ -165,170 +187,8 @@ body {
 }
 
 /* ===========================================================
-   VIDEO PLAYER PAGE
+ 🎬 VIDEO PAGE
 =========================================================== */
-/* ====== Desktop (Default) ====== */
-/* Base styling already handles large screens */
-
-/* ====== Large Tablets (max-width: 1200px) ====== */
-@media (max-width: 1200px) {
-  .video-page {
-    padding: 15px;
-    gap: 16px;
-  }
-
-  .player-section {
-    flex: 1 1 600px;
-    min-width: 500px;
-  }
-
-  .player-section iframe {
-    height: 360px;
-  }
-
-  .video-description {
-    max-height: 70px;
-  }
-
-  .recommended-section {
-    flex: 0 0 320px;
-  }
-}
-
-/* ====== Tablets (max-width: 992px) ====== */
-@media (max-width: 992px) {
-  .video-page {
-    flex-direction: column;
-    padding: 15px;
-  }
-
-  .player-section {
-    min-width: 100%;
-  }
-
-  .player-section iframe {
-    height: 320px;
-  }
-
-  .video-description {
-    font-size: 13px;
-    max-height: 60px;
-  }
-
-  .video-description.expanded-description {
-    max-height: 300px;
-  }
-
-  #toggleDescriptionBtn {
-    font-size: 14px;
-  }
-
-  .recommended-section {
-    flex: 1 1 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .recommended-section .video-card {
-    width: calc(50% - 10px);
-  }
-
-  .recommended-section img {
-    width: 100%;
-    height: 160px;
-  }
-}
-
-/* ====== Mobile (max-width: 768px) ====== */
-@media (max-width: 768px) {
-  .video-page {
-    gap: 12px;
-  }
-
-  .player-section iframe {
-    height: 280px;
-  }
-
-  .video-description {
-    font-size: 13px;
-    padding: 8px;
-    max-height: 50px;
-    line-height: 1.5;
-  }
-
-  .video-description.expanded-description {
-    max-height: 220px;
-  }
-
-  #toggleDescriptionBtn {
-    display: block;
-    text-align: right;
-    font-size: 13px;
-    margin-top: 4px;
-  }
-
-  .recommended-section .video-card {
-    width: 100%;
-    flex-direction: row;
-  }
-
-  .recommended-section img {
-    width: 140px;
-    height: 80px;
-  }
-}
-
-/* ====== Small Phones (max-width: 480px) ====== */
-@media (max-width: 480px) {
-  .video-page {
-    padding: 10px;
-    gap: 10px;
-  }
-
-  .player-section iframe {
-    height: 220px;
-  }
-
-  .video-description {
-    padding: 8px;
-    font-size: 12px;
-    line-height: 1.4;
-    max-height: 45px;
-  }
-
-  .video-description.expanded-description {
-    max-height: 180px;
-  }
-
-  #toggleDescriptionBtn {
-    font-size: 12px;
-    margin-top: 3px;
-  }
-
-  .recommended-section {
-    gap: 8px;
-  }
-
-  .recommended-section .video-card {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .recommended-section img {
-    width: 100%;
-    height: 160px;
-  }
-
-  .recommended-section h6 {
-    font-size: 13px;
-  }
-
-  .recommended-section small {
-    font-size: 12px;
-  }
-}
-
 .video-page {
   display: flex;
   flex-wrap: wrap;
@@ -388,13 +248,14 @@ body {
   margin-top: 5px;
 }
 
-/* ====== Recommended Section ====== */
+/* ===========================================================
+ 🎞️ RECOMMENDED SECTION
+=========================================================== */
 .recommended-section {
   flex: 0 1 350px;
-}
-
-.recommended-section h5 {
-  margin-bottom: 10px;
+  background-color: #fff;
+  color: #111;
+  transition: all 0.3s ease;
 }
 
 .recommended-videos {
@@ -418,68 +279,72 @@ body {
   border-radius: 6px;
 }
 
-.recommended-card h6 {
-  font-size: 14px;
-  margin-bottom: 4px;
-}
-
 /* ===========================================================
-   DARK MODE
+ 🌙 DARK MODE
 =========================================================== */
-body.dark {
+body.dark-mode {
   background-color: #0f0f0f;
   color: #f1f1f1;
 }
 
-body.dark .header,
-body.dark .sidebar {
+body.dark-mode .header,
+body.dark-mode .sidebar {
   background-color: #202020;
   border-color: #303030;
 }
 
-body.dark .sidebar a {
+body.dark-mode .sidebar a {
   color: #f1f1f1;
 }
 
-body.dark .sidebar a:hover {
+body.dark-mode .sidebar a:hover {
   background-color: #383838;
 }
 
-body.dark .video-card {
-  background-color: #282828;
+body.dark-mode .video-card,
+body.dark-mode .recommended-card {
+  background-color: #202020;
   color: #fff;
+  border: 1px solid #333;
 }
 
-body.dark .video-description {
-  background-color: #222;
+body.dark-mode .video-description {
+  background-color: #181818;
   color: #ddd;
 }
 
-body.dark #searchInput,
-body.dark #searchBtn {
+body.dark-mode #searchInput,
+body.dark-mode #searchBtn {
   background-color: #121212;
   border-color: #333;
   color: #fff;
 }
 
-body.dark #searchBtn {
-  background-color: #222;
+body.dark-mode .recommended-section {
+  background-color: #0f0f0f !important;
+  color: #f1f1f1 !important;
 }
 
 /* ===========================================================
-   RESPONSIVE DESIGN
+ 📱 RESPONSIVE DESIGN
 =========================================================== */
 @media (max-width: 992px) {
+  .sidebar {
+    transform: translateX(-100%);
+    position: fixed;
+    background: #fff;
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
   #mainContent {
     margin-left: 0;
   }
 
-  .sidebar {
-    left: -220px;
-  }
-
-  .sidebar.active {
-    left: 0;
+  body.sidebar-open {
+    overflow: hidden;
   }
 
   .video-grid {
@@ -496,288 +361,267 @@ body.dark #searchBtn {
     width: 70%;
   }
 
-  .player-section iframe {
-    height: 280px;
+  .video-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   }
 
-  .recommended-section {
-    flex: 1 1 100%;
-    margin-top: 20px;
+  #mainContent {
+    padding: 14px;
   }
 }
 
 @media (max-width: 480px) {
+  .header {
+    padding: 0 10px;
+  }
+
   #searchInput {
     display: none;
   }
 
-  .header {
-    padding: 0 8px;
+  .sidebar {
+    width: 220px;
   }
 
-  .player-section iframe {
-    height: 220px;
+  .video-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+
+  .video-card img {
+    height: 140px;
   }
 }
-/* ===================================
-   LIGHT MODE (default)
-=================================== */
-body {
-  background-color: #fff;
-  color: #111;
-  transition: background-color 0.3s, color 0.3s;
+
+@media (min-width: 1400px) {
+  .video-grid {
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  }
 }
 
-/* Sidebar */
-.sidebar {
-  background-color: #f8f9fa;
-  color: #333;
+@media (min-width: 1800px) {
+  .video-grid {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
+}
+/* ===================== WATCH LATER BUTTON ===================== */
+.video-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 12px;
 }
 
-.sidebar a {
-  color: #333;
-}
-
-.header {
-  background-color: #fff;
-  color: #111;
-  border-bottom: 1px solid #ddd;
-}
-
-/* Video cards & containers */
-.video-card,
-.video-card-home {
-  background-color: #fff;
-  border: 1px solid #e6e6e6;
-  color: #111;
-}
-
-.video-description {
-  background-color: #f9f9f9;
-  color: #222;
-}
-
-/* Buttons */
-button,
 .add-watch-later {
-  background-color: #065fd4;
+  background: #065fd4;
   color: #fff;
   border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background 0.3s;
 }
 
-button:hover,
 .add-watch-later:hover {
-  background-color: #0b69e3;
+  background: #004ba0;
 }
 
-/* ===================================
-   DARK MODE (when body.dark-mode)
-=================================== */
-body.dark-mode {
-  background-color: #0f0f0f;
-  color: #f1f1f1;
-}
-
-/* Header */
-body.dark-mode .header {
-  background-color: #202020;
-  color: #fff;
-  border-bottom: 1px solid #333;
-}
-
-/* Sidebar */
-body.dark-mode .sidebar {
-  background-color: #181818;
-  color: #f1f1f1;
-}
-
-body.dark-mode .sidebar a {
-  color: #f1f1f1;
-}
-
-/* Video Cards */
-body.dark-mode .video-card,
-body.dark-mode .video-card-home {
-  background-color: #202020;
-  color: #fff;
-  border: 1px solid #333;
-}
-
-/* Descriptions */
-body.dark-mode .video-description {
-  background-color: #181818;
-  color: #f1f1f1;
-}
-
-/* Buttons */
-body.dark-mode button,
+/* Dark mode button style */
 body.dark-mode .add-watch-later {
-  background-color: #3ea6ff;
+  background: #3ea6ff;
   color: #000;
 }
 
-body.dark-mode button:hover,
-body.dark-mode .add-watch-later:hover {
-  background-color: #65b8ff;
-}
-
-/* Inputs / Search bar */
-.search-bar input {
-  background-color: #fff;
-  color: #111;
-}
-
-body.dark-mode .search-bar input {
-  background-color: #121212;
+/* ===================== TOAST MESSAGE ===================== */
+.toast-msg {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(40px);
+  background: #333;
   color: #fff;
-  border: 1px solid #333;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+.toast-msg.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+/* ===================== WATCH LATER PAGE ===================== */
+.watch-later-container {
+  padding: 20px;
+  margin-left: 250px;
+  transition: margin-left 0.3s ease;
 }
 
-body.dark-mode .search-bar input::placeholder {
+.page-title {
+  font-size: 22px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+/* ===================== GRID LAYOUT ===================== */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.video-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.video-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.video-card .info {
+  padding: 10px 12px;
+}
+
+.video-card h6 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.video-card small {
+  color: #606060;
+  font-size: 13px;
+}
+
+.video-card .views {
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
+}
+
+/* ===================== RESPONSIVE DESIGN ===================== */
+@media (max-width: 992px) {
+  .watch-later-container {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .video-card img {
+    height: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 18px;
+  }
+
+  .video-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+
+  .video-card img {
+    height: 120px;
+  }
+}
+
+/* ===================== DARK MODE ===================== */
+body.dark-mode .video-card {
+  background: #1f1f1f;
+  color: #fff;
+}
+
+body.dark-mode .video-card small,
+body.dark-mode .video-card .views {
   color: #aaa;
 }
-/* =============================
-   DARK MODE FIXES (GLOBAL)
-============================= */
-body.dark-mode {
-  background-color: #0f0f0f !important;
-  color: #f1f1f1 !important;
+
+body.dark-mode .page-title {
+  color: #fff;
 }
 
-/* Generic text fix */
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode h3,
-body.dark-mode h4,
-body.dark-mode h5,
-body.dark-mode h6,
-body.dark-mode p,
-body.dark-mode span,
-body.dark-mode small,
-body.dark-mode strong {
-  color: #f1f1f1 !important;
+.empty-msg {
+  text-align: center;
+  color: #666;
+  font-size: 16px;
+  margin-top: 50px;
 }
 
-/* Links in dark mode */
-body.dark-mode a {
-  color: #3ea6ff !important;
+body.dark-mode .empty-msg {
+  color: #aaa;
 }
-body.dark-mode a:hover {
-  color: #65b8ff !important;
+/* ========== Sidebar + Layout Responsive ========== */
+.sidebar {
+  width: 220px;
+  background: var(--sidebar-bg, #fff);
+  transition: all 0.3s;
+  position: fixed;
+  top: 60px;
+  bottom: 0;
+  overflow-y: auto;
 }
-
-/* =============================
-   RECOMMENDED SECTION FIX
-============================= */
-.recommended-section {
-  background-color: #fff;
-  color: #111;
-  transition: all 0.3s ease;
-}
-
-.recommended-section .card {
-  background-color: #fff;
-  border: 1px solid #e6e6e6;
-  color: #111;
-  transition: all 0.3s ease;
-}
-
-body.dark-mode .recommended-section {
-  background-color: #0f0f0f !important;
-  color: #f1f1f1 !important;
-}
-
-body.dark-mode .recommended-section .card {
-  background-color: #202020 !important;
-  border: 1px solid #333 !important;
-  color: #fff !important;
-}
-
-body.dark-mode .recommended-section .card a {
-  color: #f1f1f1 !important;
-}
-
-/* Small text and meta info */
-body.dark-mode .recommended-section small {
-  color: #aaa !important;
-}
-
-/* Hover effect (YouTube-like) */
-body.dark-mode .recommended-section .card:hover {
-  background-color: #272727 !important;
-}
-
-/* "View More" button */
-#viewMoreBtn {
-  background-color: #e6e6e6;
-  color: #111;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  transition: 0.2s;
-}
-#viewMoreBtn:hover {
-  background-color: #d0d0d0;
-}
-
-body.dark-mode #viewMoreBtn {
-  background-color: #3ea6ff !important;
-  color: #000 !important;
-}
-body.dark-mode #viewMoreBtn:hover {
-  background-color: #65b8ff !important;
-}
-
-/* =============================
-   VIDEO CARD FIX (HOME PAGE TOO)
-============================= */
-body.dark-mode .video-card,
-body.dark-mode .video-card-home {
-  background-color: #202020 !important;
-  color: #fff !important;
-  border: 1px solid #333 !important;
-}
-
-/* When collapsed */
-#sidebar.collapsed {
+.sidebar.collapsed {
   transform: translateX(-100%);
 }
-
-/* Content shift */
-#content,
-#mainContent {
-  transition: margin-left 0.3s ease;
-  margin-left: 240px;
+#content {
+  margin-left: 220px;
+  transition: margin-left 0.3s;
 }
-
-#content.expanded,
-#mainContent.expanded {
+#content.expanded {
   margin-left: 0;
 }
-
-/* Hamburger */
-#toggleSidebar {
-  font-size: 22px;
-  background: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  padding: 10px;
-}
-
-/* Mobile layout */
-@media (max-width: 992px) {
-  #sidebar {
+@media (max-width: 991px) {
+  .sidebar {
     transform: translateX(-100%);
   }
-  #sidebar.collapsed {
-    transform: translateX(-100%);
-  }
-  #sidebar:not(.collapsed) {
+  .sidebar.collapsed {
     transform: translateX(0);
   }
+  #content {
+    margin-left: 0 !important;
+  }
+}
+
+/* ========== Playlist Layout ========== */
+.playlist-list button {
+  border-radius: 20px;
+  font-size: 14px;
+  padding: 5px 12px;
+}
+.playlist-videos .card {
+  transition: transform 0.2s;
+}
+.playlist-videos .card:hover {
+  transform: scale(1.02);
+}
+
+/* ========== Dark Mode ========== */
+body.dark-mode {
+  background-color: #121212;
+  color: #f5f5f5;
+}
+body.dark-mode .card {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+body.dark-mode .sidebar {
+  background-color: #1a1a1a;
+}
+body.dark-mode a {
+  color: #ddd;
 }

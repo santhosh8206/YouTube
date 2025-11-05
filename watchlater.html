@@ -39,8 +39,28 @@
   <main id="mainContent">
     <h2>Watch Later</h2>
     <p class="text-muted">Videos you’ve saved for later viewing</p>
-    <div id="watchLaterList" class="video-grid"></div>
+    <div id="watchLaterGrid" class="video-grid"></div>
   </main>
+  
+  <script>
+    const saved = JSON.parse(localStorage.getItem('mytubeWatchLater')) || [];
+    const grid = document.getElementById('watchLaterGrid');
+
+    if (saved.length) {
+      grid.innerHTML = saved.map(v => `
+        <div class="video-card">
+          <img src="${v.thumbnail}" alt="${v.title}">
+          <div class="info">
+            <h6>${v.title}</h6>
+            <small>${v.channel}</small>
+            <p class="views">${v.views || ''}</p>
+          </div>
+        </div>
+      `).join('');
+    } else {
+      grid.innerHTML = `<p class="empty-msg">You haven't added any videos yet.</p>`;
+    }
+  </script>
 
   <script src="./indexhtml.js"></script>
 </body>

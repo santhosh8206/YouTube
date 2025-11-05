@@ -1,48 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MyTube - Playlists</title>
-  <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
 </head>
+
 <body>
-  <header class="header d-flex align-items-center justify-content-between">
+  <!-- ========== HEADER ========== -->
+  <header class="header d-flex align-items-center justify-content-between px-3 py-2">
     <div class="d-flex align-items-center gap-2">
       <button id="toggleSidebar" class="icon-btn">☰</button>
-      <a class="nav-link" href="./index.html"><h3 class="logo mb-0">MyTube</h3></a>
+      <a href="./index.html" class="text-decoration-none"><h3 class="logo mb-0">MyTube</h3></a>
     </div>
 
     <div class="d-flex align-items-center gap-2">
-      <input type="text" id="searchInput" placeholder="Search" class="form-control form-control-sm search-bar">
+      <input type="text" id="searchInput" placeholder="Search" class="form-control form-control-sm search-bar" />
       <button id="searchBtn" class="icon-btn">🔍</button>
     </div>
 
     <div class="d-flex align-items-center gap-3">
       <button id="themeToggle" class="icon-btn">🌙</button>
-      <div id="notificationBadge" class="badge bg-danger" style="display:none;">0</div>
+      <span id="notificationBadge" class="badge bg-danger" style="display:none;">0</span>
     </div>
   </header>
 
+  <!-- ========== SIDEBAR ========== -->
   <aside id="sidebar" class="sidebar">
     <nav>
       <a href="index.html"><i class="bi bi-house"></i> Home</a>
-      <a href="history.html" class="active"><i class="bi bi-clock-history"></i> History</a>
+      <a href="history.html"><i class="bi bi-clock-history"></i> History</a>
       <a href="watchlater.html"><i class="bi bi-clock"></i> Watch Later</a>
-      <a href="playlists.html"><i class="bi bi-music-note-list"></i> Playlists</a>
+      <a href="playlists.html" class="active"><i class="bi bi-music-note-list"></i> Playlists</a>
       <a href="notifications.html"><i class="bi bi-bell"></i> Notifications</a>
     </nav>
   </aside>
 
-  <main id="mainContent">
+  <!-- ========== MAIN CONTENT ========== -->
+  <main id="content" class="p-3">
     <h2>Your Playlists</h2>
-    <p class="text-muted">Create, view, and manage your playlists</p>
+    <p class="text-muted mb-3">Create, view, and manage your playlists.</p>
 
-    <div id="playlistsContainer" class="video-grid"></div>
+    <div id="playlistList" class="playlist-list d-flex flex-wrap gap-2 mb-3"></div>
+    <div id="playlistVideos" class="playlist-videos"></div>
   </main>
 
-  <script src="./indexhtml.js"></script>
+  <script src="indexhtml.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initSidebarToggle();
+      initThemeAndNotifications();
+
+      const listContainer = document.getElementById('playlistList');
+      const videosContainer = document.getElementById('playlistVideos');
+      const playlists = JSON.parse(localStorage.getItem('mytubePlaylists')) || {};
+
+      if (Object.keys(playlists).length === 0) {
+        listContainer.innerHTML = `<p class="text-muted">No playlists yet. Add some videos from Home!</p>`;
+        return;
+      }
+
+      // Render playlist buttons
+      listContainer.innerHTML = Object.keys(playlists)
+        .map(name => `<button class="btn btn-outline-primary playlist-item" data-name="${name}">
+          ${name} (${playlists[name].length})
+        </button>`)
+        .join('');
+
+      // Show videos when playlist is clicked
+      document.addEventListener('click', e => {
+        const btn = e.target.closest('.playlist-item');
+        if (!btn) return;
+
+        const name = btn.dataset.name;
+        const videos = playlists[name] || [];
+
+        videosContainer.innerHTML = `
+          <h4 class="mb-3">${name}</h4>
+          <div class="row">
+            ${videos.map(v => `
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                <div class="card h-100">
+                  <img src="${v.thumbnail}" class="card-img-top" alt="${v.title}" style="height:160px;object-fit:cover;">
+                  <div class="card-body">
+                    <h6 class="card-title">${v.title}</h6>
+                    <p class="text-muted small mb-0">${v.channel}</p>
+                    <p class="text-muted small">${v.views}</p>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      });
+    });
+  </script>
 </body>
 </html>
